@@ -10,6 +10,9 @@ export class SelectorComponent{
 
   constructor(private dateService: DateService) { }
 
+  go(direction: number): void{
+    this.dateService.changeMonth(direction);
+  }
 
   getDate(): any{
     return this.dateService.date;

@@ -1,7 +1,8 @@
 import {Pipe, PipeTransform} from '@angular/core';
 import * as moment from 'moment';
 @Pipe({
-  name: 'moment'
+  name: 'moment',
+  pure: false     // нужно, для того, чтобы шаблон перерисовывался при изменениях
 })
 
 export class MomentPipe implements PipeTransform {
