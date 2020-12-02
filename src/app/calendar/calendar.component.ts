@@ -30,7 +30,7 @@ export class CalendarComponent implements OnInit {
 
   generate(now: moment.Moment): void { // генерирует дату при взаимодействии с компонентом и изменяет ее
     // границы для изображения календаря
-    const startDate = now.clone().startOf('month').startOf('week');
+    const startDate = now.clone().startOf('month').startOf('week'); // клонирование объекта во избежание аномалий
     const endDay = now.clone().endOf('month').endOf('week');
 
     // переменная для проверки цикла
@@ -54,7 +54,7 @@ export class CalendarComponent implements OnInit {
   }
 
   select(day: moment.Moment): void {
-
+    this.dateService.changeDate(day);
   }
 
 }

@@ -12,4 +12,13 @@ export class DateService {
     const value = this.date.value.add(direction, 'month');
     this.date.next(value);
   }
+
+  // выбирает и подсвечивает дату при клике
+  changeDate(date: moment.Moment): void {
+    const value = this.date.value.set({   // создание нового объекта moment. Применяю к этому объекту функцию set, чтобы задать новые значения
+      date: date.date(),
+      month: date.month()
+    });
+    this.date.next(value);
+  }
 }
