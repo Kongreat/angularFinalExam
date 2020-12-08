@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import {DateService} from '../shared/date.service';
+import {HighlightDirective} from '../shared/highlight.directive';
 
 @Component({
   selector: 'app-selector',

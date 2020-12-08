@@ -8,7 +8,7 @@
       <li class="task" *ngFor="let task of tasks; let i = index">
         <span>
           <strong>{{i+1}}</strong>
-          {{task.title}}
+          {{task.TaskTitle}}
         </span>
         <button class="btn btn-primary" (click)="remove(task)">Remove</button>
       </li>
@@ -20,7 +20,7 @@
 
   <footer>
     <form (ngSubmit)="submit()" [formGroup]="form">
-      <input type="text" formControlName="title">
+      <input type="text" formControlName="TaskTitle" name="TaskTitle">
       <button type="submit" class="btn btn-primary btn-block" [disabled]="form.invalid">Add</button>
     </form>
   </footer>

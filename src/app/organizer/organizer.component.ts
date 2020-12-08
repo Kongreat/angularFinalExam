@@ -26,20 +26,22 @@ export class OrganizerComponent implements OnInit {
       switchMap(value => this.tasksService.load(value))
     ).subscribe(tasks => {
       this.tasks = tasks;
+      console.log('Changed');
     });
     this.form = new FormGroup({
-      title: new FormControl('', Validators.required)
+      TaskTitle: new FormControl('', Validators.required)
     });
   }
 
   // функция при submit формы, получает значение, создает задачу
   submit(): void{
-    const {title} = this.form.value;
+    const {TaskTitle} = this.form.value;
 
     // создание объекта задачи
     const task: Task = {
-      title,
-      date: this.dateService.date.value.format('DD-MM-YYYY')
+      TaskId: this.dateService.date.value.format('DD-MM-YYYY'),
+      TaskTitle,
+      TaskDate: this.dateService.date.value.format('DD-MM-YYYY')
     };
     this.tasksService.create(task).subscribe(t => {
       this.tasks.push(t); // добавление задачи в массив, чтобы показывалась сразу, не перезагружая данные
@@ -53,7 +55,7 @@ export class OrganizerComponent implements OnInit {
 
   remove(task: Task): any{
     this.tasksService.remove(task).subscribe(() => {
-      this.tasks = this.tasks.filter(t => t.id !== task.id); // удаление задачи через filter из массива
+      this.tasks = this.tasks.filter(t => t.TaskId !== task.TaskId); // удаление задачи через filter из массива
       // (остаются только те, у которые не совпадают айди с удаляемым
     }, err => {
       console.error(err);
