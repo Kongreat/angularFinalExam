@@ -13,11 +13,19 @@ import { HighlightDirective } from './shared/highlight.directive';
 import { RouterModule, Routes} from '@angular/router';
 import { AboutComponent } from './about/about.component';
 import { MainComponent } from './main/main.component';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatButtonModule } from '@angular/material/button';
+import { MatCardModule } from '@angular/material/card';
+import  { MatTableModule } from '@angular/material/table';
+import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
+
 
 const routes: Routes = [
+  {path: '', redirectTo: '/main', pathMatch: 'full'},
   {path: 'about', component: AboutComponent},
   {path: 'main', component: MainComponent},
-  {path: '', redirectTo: '/main', pathMatch: 'full'}
+  {path: '**', component: PageNotFoundComponent}
 ];
 
 @NgModule({
@@ -29,14 +37,20 @@ const routes: Routes = [
     MomentPipe,
     HighlightDirective,
     AboutComponent,
-    MainComponent
+    MainComponent,
+    PageNotFoundComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     ReactiveFormsModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    BrowserAnimationsModule,
+    MatToolbarModule,
+    MatButtonModule,
+    MatCardModule,
+    MatTableModule
   ],
   providers: [],
   bootstrap: [AppComponent]

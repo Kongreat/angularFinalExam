@@ -12,7 +12,7 @@ export class SelectorComponent{
   constructor(private dateService: DateService) { }
 
   go(direction: number): void{
-    this.dateService.changeMonth(direction);
+    this.dateService.changeMonth(direction); // изменяем текущую дату через dateservice
   }
 
   getDate(): any{

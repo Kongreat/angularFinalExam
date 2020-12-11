@@ -10,10 +10,6 @@ export interface Task {
   TaskDate: string;
 }
 
-interface CreateResponse {
-  name: string;
-}
-
 @Injectable({
   providedIn: 'root'})
 
@@ -30,6 +26,7 @@ export class TasksService{
         if (!tasks) {
           return [];
         }
+        // пробегаю по объекту tasks
         return Object.keys(tasks).map(key => ({...tasks[key], TaskTitle: tasks[key].TaskTitle}));
       }));
   }

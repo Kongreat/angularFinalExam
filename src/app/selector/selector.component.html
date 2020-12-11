@@ -1,7 +1,7 @@
 <p>
-  <i class="material-icons" (click)="go(-1)">arrow_left</i>
+  <i class="material-icons" (click)="go(-1)">keyboard_arrow_left</i>
 
-  <span appHighlight>{{getDate() | async | moment}}</span>
+  <span appHighlight class="date">{{getDate() | async | moment}}</span>
 
-  <i class="material-icons" (click)="go(1)">arrow_right</i>
+  <i class="material-icons" (click)="go(1)">keyboard_arrow_right</i>
 </p>

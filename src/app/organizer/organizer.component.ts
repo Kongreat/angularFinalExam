@@ -29,12 +29,17 @@ export class OrganizerComponent implements OnInit {
       console.log('Changed');
     });
 
+    // инициализация формы, добавление к ней валидаторов
     this.form = new FormGroup({
       TaskTitle: new FormControl('', Validators.required)
     });
   }
 
-  // функция при submit формы, получает значение, создает задачу
+  getDate(): any{
+    return this.dateService.date;
+  }
+
+  // функция при submit формы, получает значение из инпута, создает задачу
   submit(): void{
     const {TaskTitle} = this.form.value;
 
@@ -48,10 +53,6 @@ export class OrganizerComponent implements OnInit {
       this.tasks.push({...task, TaskId: t}); // добавление задачи в массив, чтобы показывалась сразу, не перезагружая из бд данные
       this.form.reset();
     }, err => console.error(err));
-  }
-
-  getDate(): any{
-    return this.dateService.date;
   }
 
   remove(task: Task): any{

@@ -6,16 +6,18 @@ import {BehaviorSubject} from 'rxjs';
 })
 
 export class DateService {
+  // реактивная переменная, чтобы следить за изменением даты
   public date: BehaviorSubject<moment.Moment> = new BehaviorSubject(moment());
 
   changeMonth(direction: number): void{
-    const value = this.date.value.add(direction, 'month');
+    const value = this.date.value.add(direction, 'month'); // перемещение на по месяцам
     this.date.next(value);
   }
 
   // выбирает и подсвечивает дату при клике
   changeDate(date: moment.Moment): void {
-    const value = this.date.value.set({   // создание нового объекта moment. Применяю к этому объекту функцию set, чтобы задать новые значения
+    // создание нового объекта moment. Применяю к этому объекту функцию set, чтобы задать новые значения
+    const value = this.date.value.set({
       date: date.date(),
       month: date.month()
     });

@@ -1,8 +1,8 @@
 <section>
   <header>
-    Органайзер: <strong>{{getDate() | async | moment: 'DD.MM.YYYY'}}</strong>
-    <hr />
+    Tasks for: <strong appHighlight>{{getDate() | async | moment: 'DD.MM.YYYY'}}</strong>
   </header>
+  <hr />
   <main>
     <ul *ngIf="tasks.length; else noTasks">
       <li class="task" *ngFor="let task of tasks; let i = index">
@@ -10,11 +10,16 @@
           <strong>{{i+1}}</strong>
           {{task.TaskTitle}}
         </span>
-        <button class="btn btn-primary" (click)="remove(task)">Remove</button>
+        <button class="btn btn-remove" (click)="remove(task)">
+          <span class="material-icons">
+            done
+          </span>
+        </button>
       </li>
     </ul>
+
     <ng-template #noTasks>
-      <p class="text-center">No tasks for today</p>
+      <p class="text-center noTasks">No tasks for today</p>
     </ng-template>
   </main>
 
