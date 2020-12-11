@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {DateService} from '../shared/date.service';
 import {FormControl, FormGroup, Validators} from '@angular/forms';
-import {Task, TasksService} from '../shared/tasks.service';
+import {iTask, TasksService} from '../shared/tasks.service';
 import {switchMap} from 'rxjs/operators';
 
 @Component({
@@ -12,7 +12,7 @@ import {switchMap} from 'rxjs/operators';
 export class OrganizerComponent implements OnInit {
 
   form: FormGroup;
-  tasks: Task[] = [];
+  tasks: iTask[] = [];
   value: any;
 
   constructor(private dateService: DateService,
@@ -44,7 +44,7 @@ export class OrganizerComponent implements OnInit {
     const {TaskTitle} = this.form.value;
 
     // создание объекта задачи
-    const task: Task = {
+    const task: iTask = {
       TaskTitle,
       TaskDate: this.dateService.date.value.format('DD-MM-YYYY')
     };
@@ -55,7 +55,7 @@ export class OrganizerComponent implements OnInit {
     }, err => console.error(err));
   }
 
-  remove(task: Task): any{
+  remove(task: iTask): any{
     this.tasksService.remove(task).subscribe(() => {
       this.tasks = this.tasks.filter(t => t.TaskId !== task.TaskId); // удаление задачи через filter из массива
       // (остаются только те, у которых не совпадают айди с удаляемым

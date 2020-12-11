@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import {DateService} from '../shared/date.service';
 
-interface Day {
+interface iDay {
   value: moment.Moment; // дата
   // поля для корректного отображения дней
   active: boolean; // сегодня
@@ -10,8 +10,8 @@ interface Day {
   selected: boolean; // нажатый день
 }
 
-interface Week {
-  days: Day[];
+interface iWeek {
+  days: iDay[];
 }
 
 @Component({
@@ -21,7 +21,7 @@ interface Week {
 })
 export class CalendarComponent implements OnInit {
 
-  calendar: Week[];
+  calendar: iWeek[];
   constructor(private dateService: DateService) { }
 
   ngOnInit(): void {

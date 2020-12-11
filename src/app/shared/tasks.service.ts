@@ -4,7 +4,7 @@ import {map} from 'rxjs/operators';
 import {Observable} from 'rxjs';
 import * as moment from 'moment';
 
-export interface Task {
+export interface iTask {
   TaskId?: number;
   TaskTitle: string;
   TaskDate: string;
@@ -14,14 +14,12 @@ export interface Task {
   providedIn: 'root'})
 
 export class TasksService{
-  // инъекция httpClient для работы с бэкэнд запросами
-  constructor(private http: HttpClient) { }
- // ссылка на БД
-  static APIUrl = 'http://localhost:54669/api/Task';
+  constructor(private http: HttpClient) { }   // инъекция httpClient для работы с бэкэнд запросами
+  static APIUrl = 'http://localhost:54669/api/Task'; // ссылка на БД
 
-  // метод загрзки данных из БД .net
-  load(date: moment.Moment): Observable<Task[]>{
-    return this.http.get<Task[]>(`${TasksService.APIUrl}?date=${date.format('DD-MM-YYYY')}`)
+  // метод загрзки данных из БД
+  load(date: moment.Moment): Observable<iTask[]>{
+    return this.http.get<iTask[]>(`${TasksService.APIUrl}?date=${date.format('DD-MM-YYYY')}`)
       .pipe(map(tasks => {
         if (!tasks) {
           return [];
@@ -32,13 +30,13 @@ export class TasksService{
   }
 
   // метод добавления задачи в БД
-  create(task: Task): Observable<any>{
+  create(task: iTask): Observable<any>{
     return this.http
       .post(`${TasksService.APIUrl}`, task);
   }
 
   // метод удаления задачи из БД
-  remove(task: Task): Observable<void>{
+  remove(task: iTask): Observable<void>{
     return this.http.delete<void>(`${TasksService.APIUrl}?id=${task.TaskId}`);
   }
 }
